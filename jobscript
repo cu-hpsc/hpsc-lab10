@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --time=00:01:00
+#SBATCH --qos=testing
+#SBATCH --partition=sgpu-testing
+#SBATCH --ntasks=1
+#SBATCH --job-name=gpu_matmul
+#SBATCH --output=matmul.%j.out
+
+module purge
+module load gcc/6.1.0 cuda
+
+./matmul
