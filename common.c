@@ -26,7 +26,7 @@ __device__ void SetElement(Matrix A, int row, int col, float value)
 
 
 // Thread block size
-#define BLOCK_SIZE 16
+#define BLOCK_SIZE 32
 
 // Forward declaration of the matrix multiplication kernel
 __global__ void MatMulKernel(const Matrix, const Matrix, Matrix);
@@ -63,9 +63,7 @@ void MatMul(const Matrix A, const Matrix B, Matrix C)
     // Invoke kernel
     dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
     dim3 dimGrid(B.width / dimBlock.x, A.height / dimBlock.y);
-    ticks_t lasttick = rdtsc();
     MatMulKernel<<<dimGrid, dimBlock>>>(d_A, d_B, d_C);
-    printf("Kernel took %ld ticks\n",rdtsc()-lasttick);
 
     // Read C from device memory
     cudaMemcpy(C.elements, d_C.elements, size, cudaMemcpyDeviceToHost);
