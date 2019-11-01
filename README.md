@@ -1,7 +1,7 @@
 # HPSC Lab 10
 2019-11-01
 
-Click to [make your own repo](TO DO).
+Click to [make your own repo](https://classroom.github.com/a/FQiqSqk9).
 
 The goals for this lab are:
 * Become more familiar with CUDA syntax;
